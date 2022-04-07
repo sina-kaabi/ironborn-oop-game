@@ -1,5 +1,12 @@
+#board {
+    position: relative;
+    background-color: rgb(161, 208, 202);
+    height: 100vh;  
+}
 
-    #board {
-        background-color: rgb(161, 208, 202);
-        height: 50vh;  
-    }
+.player {
+    position: absolute;
+    background-color: rgb(23, 162, 113);
+    height: 20px; /*to do: remove*/
+    width: 120px;
+}
