@@ -1,5 +1,6 @@
 
 
+
 function createDomElement(className){
     const board = document.getElementById("board");
     const newElm = document.createElement("div");
@@ -16,11 +17,13 @@ function drawDomElement(instance){
     instance.domElement.style.bottom = instance.positionY + "%";
 }
 
-/*start game*/
+
+/* Start game */
 const game = new Game(createDomElement, drawDomElement);
 game.start();
 
-/* event listeners */
+
+/* Event listeners */
 document.addEventListener("keydown", function(event){
     switch(event.key){
         case "ArrowRight":
