@@ -7,6 +7,13 @@
 .player {
     position: absolute;
     background-color: rgb(23, 162, 113);
-    height: 20px; /*to do: remove*/
+    height: 20px;
+    width: 120px;
+}
+
+.obstacle {
+    position: absolute;
+    background-color: rgb(226, 14, 71);
+    height: 20px;
     width: 120px;
 }

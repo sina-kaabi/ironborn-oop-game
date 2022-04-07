@@ -16,11 +16,11 @@ function drawDomElement(instance){
     instance.domElement.style.bottom = instance.positionY + "%";
 }
 
-
+/*start game*/
 const game = new Game(createDomElement, drawDomElement);
 game.start();
 
-
+/* event listeners */
 document.addEventListener("keydown", function(event){
     switch(event.key){
         case "ArrowRight":
