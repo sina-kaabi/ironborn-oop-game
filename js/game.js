@@ -12,16 +12,18 @@ info:
 
 
 
+
 class Game {
     constructor(create, draw){
         this.time = 0;
         this.player = null;
-        this.obstacles = [];
+        this.obstacles = []; // array of instances of the class Obstacle
         this.create = create;
         this.draw = draw;
     }
 
     start(){
+
         // create & draw player
         this.player = new Player();
         this.player.domElement = this.create("player"); //create a dom element with the class "player"
@@ -33,26 +35,37 @@ class Game {
             this.obstacles.forEach( (obstacle) => {
                 obstacle.moveDown();
                 this.draw(obstacle);
+                this.detectCollision(obstacle);
+                this.detectObstacleOutside(obstacle);
             });
 
             // create & draw an obstacles
-            if(this.time % 10 === 0){
+            if(this.time % 60 === 0){
                 const newObstacle = new Obstacle();
                 newObstacle.domElement = this.create("obstacle");
                 this.obstacles.push(newObstacle);
-
-                // this.draw(this.obstacles);
             }
 
             this.time++;
 
-        }, 200);
-
-
-
-        
+        }, 50);        
     }
 
+    detectCollision(obstacle){
+        if (this.player.positionX < obstacle.positionX + obstacle.width &&
+            this.player.positionX + this.player.width > obstacle.positionX &&
+            this.player.positionY < obstacle.positionY + obstacle.height &&
+            this.player.height + this.player.positionY > obstacle.positionY) {
+                console.log("game over")
+        }
+    }
+
+    detectObstacleOutside(obstacle){
+        if(obstacle.positionY < 0){
+            this.obstacles.shift(); // remove from array
+            obstacle.domElement.remove(); // remove from the dom
+        }
+    }
     
     movePlayer(direction){
         if(direction === "left"){
@@ -67,6 +80,8 @@ class Game {
 
 class Player {
     constructor() {
+        this.width = 10;
+        this.height = 10;
         this.positionX = 50;
         this.positionY = 0;
         this.domElement = null;
@@ -84,7 +99,9 @@ class Player {
 
 class Obstacle {
     constructor(){
-        this.positionX = 50;
+        this.width = 10;
+        this.height = 10;
+        this.positionX = Math.floor(Math.random() * (100 - this.width + 1)); // random between 0 and (100-this.width)
         this.positionY = 100;
         this.domElement = null;
     }
@@ -93,3 +110,20 @@ class Obstacle {
     }
 }
 
+
+
+////const max = 100;
+///const number = Math.floor(Math.random() * (max + 1));
+
+//how random between 2 numbers
+// between 0 and 100 - width of obstacles
+
+//function randomIntFromInterval(min, max) {
+    // min and max included
+   // return Math.floor(Math.random () * (max - min + 1) + min);
+//}
+
+//this formula above randomises between 2 numbers and including the min and max!
+
+//const number = randomIntFromInterval(20, 100);
+//console.log(number);
