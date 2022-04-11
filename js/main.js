@@ -1,5 +1,4 @@
 
-
 function createDomElement(className){
     const board = document.getElementById("board");
     const newElm = document.createElement("div");
@@ -34,8 +33,36 @@ document.addEventListener("keydown", function(event){
         case "ArrowLeft":
             game.movePlayer("left");
             break;
-    }
+            case 'ArrowUp':
+                game.movePlayer('up')
+                break;
+              case 'ArrowDown':
+                game.movePlayer('down')
+                break;
+    
+    
+    
+        }
 });
+
+document.onkeydown = function (event) {
+    switch (event.key) {
+       
+       case 38:
+          console.log("Up key is pressed.");
+          moveLeft();
+          moveLeft();
+          break;
+       case 40:
+          console.log("Down key is pressed.");
+          moveRight();
+          moveRight();
+          break;
+
+    }
+}
+
+
 
 
 
